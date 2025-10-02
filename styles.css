@@ -1,0 +1,296 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/*position*/
+/*static: por defecto */
+main {
+    position: static;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/*relative: se mueve desde su posicion original*/
+header{
+    position: relative;
+    width: 100%;
+    background: #8b4513;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+/*fixed: se queda fijo al hacer scroll*/
+nav{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    background: #6b4423;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    margin: 8px 0;
+}
+
+nav ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+/*float: elementos flotantes lado a lado*/
+.producto{
+    float: left;
+    width: 22%;
+    margin: 1.5%;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Para que las imágenes se vean bien */
+    border-radius: 5px;
+}
+
+/*clear = limpia los floats anteriores*/
+#nosotros{
+    clear: both;
+    background: white;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+#nosotros img {
+    float: left;
+    width: 30%;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+/*Display*/
+/*block: Ocupa toda la linea*/
+h2{
+    display: block;
+    color: #2d572c;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+section{
+    display: block;
+    margin-bottom: 30px;
+}
+
+/*inline: solo ocupa su espacio*/
+#contacto p {
+    display: inline;
+    margin-right: 20px;
+    background: #2d572c;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/*inline block: en linea pero con tamano*/
+nav ul li {
+    display: inline-block;
+}
+
+/* none: Oculta el elemento completamente
+nav ul li a[href="#nosotros"] {
+    display: none;
+}*/
+
+/*overflow*/
+/*hidden: Oculta lo que se desborda*/
+.producto p {
+    overflow: hidden;
+    height: 60px;
+}
+
+/*scroll: Siempre muestra barra de scroll*/
+#contacto{
+    overflow: scroll;
+    height: 120px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/*auto: muestra scroll solo si es necesario*/
+#nosotros div{
+    overflow: auto;
+    max-height: 300px;
+}
+
+/*visible: el contenido puede salirse*/
+.producto h3{
+    overflow: visible;
+}
+
+/*visibility*/
+/*visible: el elemento se ve*/
+#menu {
+    visibility: visible;
+}
+
+/*hidden: oculta pero mantiene el espacio*/
+.producto:hover img {
+    visibility: hidden;
+}
+
+/*zindex*/
+/*zindex 1: contenido base*/
+.producto{
+    position: relative;
+    z-index: 1;
+}
+
+/*zindex 5: productos al hacer hover*/
+.producto:hover {
+    z-index: 5;
+    background: #FFE4B5; 
+    border: 3px solid #8B4513;
+}
+
+/*zindex 100: navegacion siempre visible*/
+nav{
+    z-index: 100;
+}
+
+#ubicaciones {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    background: white;
+}
+
+/*absolute = se posiciona respecto al padre*/
+footer{
+    position: absolute;
+    width: 100%;
+    clear: both;
+    background: #3E2723;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.ubicacion {
+    width: 47%;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.fathercontainer{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ubicacion:first-child {
+    order: 2;
+}
+
+.ubicacion:last-child{
+    order: 1;
+}
+
+.titulo{
+    position: absolute;
+    left: 40%;
+    top: 10%;
+}
+
+.ubicacion iframe {
+    width: 100%;
+}
+
+.titulos{
+    text-align: center;
+}
+
+/* ===== FLEXBOX RESPONSIVE ===== */
+
+/* PANTALLAS GRANDES - 769px en adelante*/
+@media (min-width: 769px) {
+    .fathercontainer {
+        flex-direction: row; 
+    }
+    
+    nav ul {
+        display: flex; 
+        flex-direction: column; 
+        gap: 5px; 
+    }
+}
+
+/* PANTALLAS MEDIANAS - hasta 768px */
+@media (max-width: 768px) {
+    .fathercontainer {
+        flex-direction: column;
+    }
+    
+    .ubicacion {
+        width: 100%;
+    }
+    
+    .producto {
+        width: 48%;
+        margin: 1%;
+    }
+    
+    nav {
+        position: static;
+        width: 100%;
+        right: auto;
+        top: auto;
+    }
+}
+
+/* PANTALLAS PEQUEÑAS - hasta 480px */
+@media (max-width: 480px) {
+    .producto {
+        float: none; 
+        width: 100%; 
+        margin: 10px 0;
+    }
+    
+    #nosotros img {
+        float: none; 
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    nav {
+        position: static;
+        width: 100%;
+    }
+    
+    .fathercontainer {
+        flex-direction: column;
+    }
+    
+    .ubicacion {
+        width: 100%;
+    }
+}
